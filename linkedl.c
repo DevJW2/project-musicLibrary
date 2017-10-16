@@ -1,17 +1,6 @@
-//Jeffrey Weng
+//Jeffrey Weng, Jensen Li
 //Period 10
-//HW 06
-
-#include <stdio.h>
-#include <stdlib.h>
-
-struct node {int i; struct node * next;};
-
-
-void print_list(struct node *);
-struct node * insert_front(struct node *, int);
-struct node * free_list(struct node *); 
-
+#include "linkedl.h"
 
 void print_list(struct node * plist){
   printf("list content: ");
