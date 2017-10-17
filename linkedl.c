@@ -1,56 +1,54 @@
 //Jeffrey Weng, Jensen Li
+//Project 0: my_tunez
 //Period 10
+/*
+insert front
+insert nodes in order
+find and return a pointer to a node based on artist and song name
+find and return a pointer to the first song of an artist based on artist name
+Return a pointer to random element in the list.
+remove a single specified node from the list
+free the entire list
+*/
+
+
 #include "linkedl.h"
 
-void print_list(struct node * plist){
+void print_list(struct song_node * list){
   printf("list content: ");
   
-  while(plist){
-    printf("%d,",(* plist).i);
-    plist = plist->next;
+  while(list){
+    printf("%s,",(* list).i);
+    list = list->next;
   }
   printf("\n");
 }
 
-struct node * insert_front(struct node * list, int value){
-  struct node * new_node = (struct node *)malloc(sizeof(*list));
+struct song_node * insert_front(struct song_node * list, char song_name[], char artist[]){
+  struct song_node * new_node = (struct song_node *)malloc(sizeof(*list));
   (* new_node).next = list;
-  (* new_node).i = value;
+  (* new_node).name  = song_name;
+  (* new_node).artist = artist;
 
   return new_node;
 }
 
-struct node * free_list(struct node * flist){
-  struct node * tmp; 
-  while(flist){
-    tmp = (*flist).next;
-    free(flist);
-    flist = tmp; 
-    
+struct song_node* free_list(struct song_node * list){
+  struct song_node * tmp; 
+  while(list){
+    tmp = (*list).next;
+    free(list);
+    list = tmp; 
   }
 
-  return flist; 
+  return list; 
 }
 
+
+
+
+
 int main(){
-  struct node * new_list = NULL;
-
-  printf("Adding 1 - 9 inclusive\n");
-  int i = 1;
-  for(; i < 10; i++){
-    new_list = insert_front(new_list, i);
-  }
-  print_list(new_list);
-
-  printf("Adding 100\n");
-  new_list = insert_front(new_list, 100);
-  print_list(new_list);
-  printf("Adding 42\n");
-  new_list = insert_front(new_list, 42);
-  
-  print_list(new_list);
-  new_list = free_list(new_list);
-  printf("list after freeing: %p\n", new_list);
-  return 0; 
+  struct song_node * new_list = NULL;
 
 }
