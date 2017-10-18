@@ -2,7 +2,6 @@
 //Project 0: my_tunez
 //Period 10
 /*
-insert front
 insert nodes in order
 find and return a pointer to a node based on artist and song name
 find and return a pointer to the first song of an artist based on artist name
@@ -31,6 +30,33 @@ struct song_node * insert_front(struct song_node * list, char song_name[], char 
   (* new_node).artist = artist;
 
   return new_node;
+}
+//FIX THIS, THIS DOESN'T DO WHAT I WANT IT TO DO
+struct song_node * compare_songs(struct song_node * node1, struct song_node * node2){
+  //return the song that is literally behind another song in the linked list.
+  if (strcmp(list1.artist, list2.artist) < 0){
+    return list1;
+  } 
+  else if(strcmp(list1.artist, list2.artist) > 0){
+    return list2;
+  }
+  else{
+    if(strcmp(list1.name, list2.name) < 0){
+      return list1; 
+    }
+    else{
+      return list2;
+    }
+  }
+  
+  return NULL; 
+}
+
+struct song_node * insert_order(struct song_node * list, char song_name[], char artist[]){
+  while(list){
+    list = list->next;
+  }
+  
 }
 
 struct song_node* free_list(struct song_node * list){
