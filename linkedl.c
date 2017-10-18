@@ -17,7 +17,7 @@ void print_list(struct song_node * list){
   printf("list content: ");
   
   while(list){
-    printf("%s,",(* list).i);
+    printf("%s - %s",(* list).name, (* list).name);
     list = list->next;
   }
   printf("\n");
@@ -32,16 +32,16 @@ struct song_node * insert_front(struct song_node * list, char song_name[], char 
   return new_node;
 }
 //FIX THIS, THIS DOESN'T DO WHAT I WANT IT TO DO
-struct song_node * compare_songs(struct song_node * node1, struct song_node * node2){
+struct song_node * compare_songs(struct song_node * list1, struct song_node * list2){
   //return the song that is literally behind another song in the linked list.
-  if (strcmp(list1.artist, list2.artist) < 0){
+  if (strcmp((* list1).artist, (* list2).artist) < 0){
     return list1;
   } 
-  else if(strcmp(list1.artist, list2.artist) > 0){
+  else if(strcmp((* list1).artist, (* list2).artist) > 0){
     return list2;
   }
   else{
-    if(strcmp(list1.name, list2.name) < 0){
+    if(strcmp((* list1).name, (* list2).name) < 0){
       return list1; 
     }
     else{
