@@ -95,8 +95,15 @@ song_node * compare_songs(  song_node * list1,   song_node * list2){
 song_node * insert_order(  song_node * list, char song_name[], char artist[]){
   int cmp = strcmp(list->artist, artist);
   song_node * temp = (song_node *)malloc(sizeof(song_node));
-  
-  
+  if(cmp < 0)
+    return insert_front(list,song_name,artist);
+  else if (cmp == 0){
+    
+  }
+  else {
+
+  }
+    
 }
 
 
