@@ -8,7 +8,7 @@ typedef struct node{
   struct song_node *next;
 } song_node;
 
-struct song_node * table[26];
+song_node * table[26];
 
 void print_list(song_node *);
 song_node * insert_front(song_node *, char[], char[]);

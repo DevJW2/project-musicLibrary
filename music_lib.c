@@ -7,18 +7,20 @@ int table_len(){
 }
 
 
-song_node * table_insert(char song_name[], char artist[], int i){
+
+song_node * table_insert(char song_name[], char artist[], int i){ //helper function to add_song_node
   int len = table_len();
   song_node * temp = (song_node *)malloc(sizeof(song_node));
   temp->name = song_name;
   temp->artist = artist;
-  while(len--){
-    if(len == 1){
-      table[len] = table[0];
-      table[0] = temp;
+  while(len-i > 0){
+    if(len-i == 1){
+      table[len] = table[i];
+      table[i] = temp;
       break;
     }
     table[len+1] = table[len];
+    i++;
   }
   return NULL;
 }
@@ -37,7 +39,7 @@ song_node * add_song_node(char song_name[], char artist[]){
     return table[i];
   }
   else
-    return table_insert(song_name, artist);
+    return table_insert(song_name, artist,i);
 }
 
 song_node * search_song(char song_name[], char artist[]){
@@ -50,7 +52,7 @@ song_node * search_song(char song_name[], char artist[]){
   return NULL;
 }
 
-song_node * seach_artist(char[] artist){
+song_node * search_artist(char artist[]){
   int i = 0;
   while (table[i]){
     if( !strncmp(table[0]->artist, artist,1) )
@@ -59,3 +61,13 @@ song_node * seach_artist(char[] artist){
   }
   return NULL;
 }
+
+song_node * delete_all(song_node * list){
+  int x = 0;
+  for(x = 0; x < 26; x++){
+    table[x] = free_list(table[x]);
+  }
+}
+
+
+
