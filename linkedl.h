@@ -11,11 +11,10 @@ typedef struct node{
 struct song_node * table[26];
 
 void print_list(song_node *);
-int table_len();
-song_node * table_insert(char song_name[], char artist[], int i);
 song_node * insert_front(song_node *, char[], char[]);
 song_node * free_list(song_node *); 
 song_node * insert_order( song_node *, char[], char[]);
-song_node * checklist(song_node *, struct song_node *);
+song_node * find_song_by_artist_song(song_node *, char[], char[]);
+song_node * find_firstsong_by_artist(song_node *, char[]);
 
 
