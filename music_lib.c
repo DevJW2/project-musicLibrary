@@ -26,7 +26,7 @@ song_node * table_insert(char song_name[], char artist[], int i){ //helper funct
 }
 
 
-song_node * add_song_node(char song_name[], char artist[]){
+song_node * add_song_node(song_node * table, char song_name[], char artist[]){
   int i = 0;
   int len = table_len();
   int cmp = strncmp(table[0]->artist, artist,1);
@@ -42,7 +42,7 @@ song_node * add_song_node(char song_name[], char artist[]){
     return table_insert(song_name, artist,i);
 }
 
-song_node * search_song(char song_name[], char artist[]){
+song_node * search_song(song_node * table, char song_name[], char artist[]){
   int i = 0;
   while (table[i]){
     if( !strncmp(table[0]->artist, artist,1) )
@@ -52,7 +52,7 @@ song_node * search_song(char song_name[], char artist[]){
   return NULL;
 }
 
-song_node * search_artist(char artist[]){
+song_node * search_artist(song_node * table, char artist[]){
   int i = 0;
   while (table[i]){
     if( !strncmp(table[0]->artist, artist,1) )
