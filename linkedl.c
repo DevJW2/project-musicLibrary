@@ -92,9 +92,6 @@ song_node * remove_node(song_node * list, char *song_name, char *artist){
   }
 
 
-
-
-
 song_node* free_list(  song_node * list){
   song_node * tmp; 
   while(list){
@@ -105,31 +102,3 @@ song_node* free_list(  song_node * list){
 
   return list; 
 }
-
-
-int main(){
-  song_node * new_list = NULL;
-
-}
-
-/*
-  song_node * compare_songs(  song_node * list1,   song_node * list2){
-  //return the song that is literally behind another song in the linked list.
-  if (strcmp((* list1).artist, (* list2).artist) < 0){
-  return list1;
-  } 
-  else if(strcmp((* list1).artist, (* list2).artist) > 0){
-  return list2;
-  }
-  else{
-  if(strcmp((* list1).name, (* list2).name) < 0){
-  return list1; 
-  }
-  else{
-  return list2;
-  }
-  }
-  
-  return NULL; 
-  }
-*/
