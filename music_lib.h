@@ -8,11 +8,11 @@ song_node * table_insert(char *, char *, int i);
 
 song_node * checklist(song_node *, song_node *);
 
-song_node * print_out_letter(char *);
+void print_out_letter(char);
 
-song_node * print_out_song_of_artist(song_node *, char *);
+void print_out_artist_songs(song_node *, char *);
 
-song_node * print_out_library(song_node *);
+void print_library();
 
 song_node * search_song(char *, char *);
 
