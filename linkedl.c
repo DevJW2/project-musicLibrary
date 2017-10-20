@@ -65,6 +65,19 @@ song_node * find_firstsong_by_artist(song_node * list, char artist[]){
   return NULL; 
 }
 
+song_node * rand_node(song_node * list){
+  song_node * temp = list;
+  int counter = 0;
+  while(temp->next){
+    temp = temp->next;
+    counter++;
+  }
+  int r = rand() % counter;
+  for(r; r > 0; r--)
+    list = list->next;
+  return list;
+}
+
 song_node * remove_node(song_node * list, char song_name[], char artist[]){
   song_node * temp = list->next;
   if(strcmp(list->name, song_name) && strcmp(list->artist, artist))
