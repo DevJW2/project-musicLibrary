@@ -16,5 +16,5 @@ song_node * free_list(song_node *);
 song_node * insert_order( song_node *, char[], char[]);
 song_node * find_song_by_artist_song(song_node *, char[], char[]);
 song_node * find_firstsong_by_artist(song_node *, char[]);
-
+song_node * remove_node(song_node *, char[], char[]);
 
