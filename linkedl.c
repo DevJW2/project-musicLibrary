@@ -15,17 +15,19 @@ void print_list( song_node * list){
   printf("\n");
 }
 
-song_node * insert_front(  song_node * list, char song_name[], char artist[]){
+song_node * insert_front(  song_node * list, char *song_name, char *artist){
   song_node * new_node = (  song_node *)malloc(sizeof(*list));
-  (* new_node).next = list;
-  (* new_node).name  = song_name;
-  (* new_node).artist = artist;
+  //(* new_node).next = list;
 
+  strcpy(new_node->name, song_name);
+  strcpy(new_node->artist,artist);
+
+  new_node->next = list;
   return new_node;
 }
    
 
-song_node * insert_order(  song_node * list, char song_name[], char artist[]){
+song_node * insert_order(  song_node * list, char *song_name, char *artist){
   int cmp = strcmp(list->artist, artist);
   if(cmp < 0)
     return insert_front(list,song_name,artist);
@@ -44,7 +46,7 @@ song_node * insert_order(  song_node * list, char song_name[], char artist[]){
 }
     
 
-song_node * find_song_by_artist_song(song_node * list, char song_name[], char artist[]){
+song_node * find_song_by_artist_song(song_node * list, char *song_name, char *artist){
   while(list){
     if(!(strcmp(song_name, list->name) && strcmp(artist, list->artist))){
       return list; 
@@ -55,7 +57,7 @@ song_node * find_song_by_artist_song(song_node * list, char song_name[], char ar
   return NULL; 
 }
 
-song_node * find_firstsong_by_artist(song_node * list, char artist[]){
+song_node * find_firstsong_by_artist(song_node * list, char *artist){
   while(list){
     if(strcmp(artist, list->artist) == 0){
       return list; 
@@ -78,7 +80,7 @@ song_node * rand_node(song_node * list){
   return list;
 }
 
-song_node * remove_node(song_node * list, char song_name[], char artist[]){
+song_node * remove_node(song_node * list, char *song_name, char *artist){
   song_node * temp = list->next;
   if(strcmp(list->name, song_name) && strcmp(list->artist, artist))
     return list->next = temp->next;
@@ -88,7 +90,7 @@ song_node * remove_node(song_node * list, char song_name[], char artist[]){
   }
   return list->next = temp->next;
   }
-}
+
 
 
 
