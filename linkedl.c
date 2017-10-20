@@ -62,9 +62,6 @@ song_node* free_list(  song_node * list){
 }
 
 
-
-
-
 int main(){
   song_node * new_list = NULL;
 
