@@ -27,17 +27,22 @@ song_node * insert_front(  song_node * list, char song_name[], char artist[]){
 
 song_node * insert_order(  song_node * list, char song_name[], char artist[]){
   int cmp = strcmp(list->artist, artist);
-  song_node * temp = (song_node *)malloc(sizeof(song_node));
   if(cmp < 0)
     return insert_front(list,song_name,artist);
-  else if (cmp == 0){
-    
+  else if (cmp > 0){
+    return insert_order(list->next,song_name,artist);
   }
   else {
-
+    while(!strcmp(list->artist,artist)){
+      if(strcmp(list->name,song_name) < 0)
+	return insert_front(list,song_name,artist);
+      else
+	list = list->next;
+    }
+    return insert_front(list,song_name,artist);
   }
-    
 }
+    
 
 song_node * find_song_by_artist_song(song_node * list, char song_name[], char artist[]){
   
@@ -68,21 +73,21 @@ int main(){
 }
 
 /*
-song_node * compare_songs(  song_node * list1,   song_node * list2){
+  song_node * compare_songs(  song_node * list1,   song_node * list2){
   //return the song that is literally behind another song in the linked list.
   if (strcmp((* list1).artist, (* list2).artist) < 0){
-    return list1;
+  return list1;
   } 
   else if(strcmp((* list1).artist, (* list2).artist) > 0){
-    return list2;
+  return list2;
   }
   else{
-    if(strcmp((* list1).name, (* list2).name) < 0){
-      return list1; 
-    }
-    else{
-      return list2;
-    }
+  if(strcmp((* list1).name, (* list2).name) < 0){
+  return list1; 
+  }
+  else{
+  return list2;
+  }
   }
   
   return NULL; 
