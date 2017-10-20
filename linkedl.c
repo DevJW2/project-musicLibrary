@@ -46,7 +46,7 @@ song_node * insert_order(  song_node * list, char song_name[], char artist[]){
 
 song_node * find_song_by_artist_song(song_node * list, char song_name[], char artist[]){
   while(list){
-    if(strcmp(song_name, list->name) == 0 && strcmp(artist, list->artist)){
+    if(!(strcmp(song_name, list->name) && strcmp(artist, list->artist))){
       return list; 
     }
     list = list->next;
@@ -58,7 +58,7 @@ song_node * find_song_by_artist_song(song_node * list, char song_name[], char ar
 song_node * find_firstsong_by_artist(song_node * list, char artist[]){
   while(list){
     if(strcmp(artist, list->artist) == 0){
-      return list->name; 
+      return list; 
     }
     
   }
