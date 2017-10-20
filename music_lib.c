@@ -39,3 +39,23 @@ song_node * add_song_node(char song_name[], char artist[]){
   else
     return table_insert(song_name, artist);
 }
+
+song_node * search_song(char song_name[], char artist[]){
+  int i = 0;
+  while (table[i]){
+    if( !strncmp(table[0]->artist, artist,1) )
+      return find_song_by_artist_song(table[i],song_name,artist);
+    i++;
+  }
+  return NULL;
+}
+
+song_node * seach_artist(char[] artist){
+  int i = 0;
+  while (table[i]){
+    if( !strncmp(table[0]->artist, artist,1) )
+      return find_firstsong_by_artist(table[i],artist);
+    i++;
+  }
+  return NULL;
+}
