@@ -25,6 +25,9 @@ int main() {
   char *songname4 = "sys";
   char *artist4 = "boy";
 
+  char *songname5 = "girl";
+  char *artist5 = "kar";
+
   printf("LINKED LIST TESTS\n");
   printf("================================================================\n");
 
@@ -130,6 +133,6 @@ int main() {
   
   print_library(table);
 
-  printf("%d\n",find_index('g'));
+  //printf("%d\n",find_index('g'));
   return 0;
 }
