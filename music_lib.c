@@ -93,14 +93,16 @@ void print_library(song_node *table[]) {
 }
 
 // Print out random songs
+
 void shuffle(song_node *table[]) {
   int playlist_len = 3;
   int i = 0;
   song_node *tmp;
   for (; i < playlist_len; i++) {
-    while(!tmp)
-      tmp = rand_node(table[rand() % 26]);
-    printf("%d\n", random);
+    int random = rand();
+    while(!table[random % 26]->next)
+      random = rand();
+    tmp = rand_node(table[random % 26]);
     print_song_node(tmp);
   }
 }
