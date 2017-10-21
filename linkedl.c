@@ -5,7 +5,7 @@
 #include "linkedl.h"
 
 void print_list(song_node *node) {
-  while (node) {
+  while (node && node->next) {
     printf("%s -- %s | ", node->artist, node->name);
     node = node->next; // Set node equal to next node
   }

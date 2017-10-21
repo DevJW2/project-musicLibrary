@@ -78,12 +78,10 @@ void print_library(song_node *table[]) {
   int empty = 1; 
   char letter = 97; // ASCII
   for (; i < 26; i++) {
-    if (table[i] != 0){
-      if(table[i]->next != 0){
-	     printf("%c\n", letter);
-	     print_list(table[i]);
-       empty = 0; 
-      }
+    if (table[i] && table[i]->next){
+      printf("%c\n", letter);
+      print_list(table[i]);
+      empty = 0; 
     }
     letter++;
   }

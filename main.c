@@ -7,7 +7,7 @@ int main() {
   int i;
   song_node *table[26];
   for (i = 0; i < 26; i++) {
-    table[i] = calloc(26, sizeof(song_node *));
+    table[i] = (song_node *)malloc(sizeof(song_node));
   }
 
   char *songname = "bro!";
