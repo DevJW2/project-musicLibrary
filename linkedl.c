@@ -75,6 +75,9 @@ song_node * rand_node(song_node * list){
     temp = temp->next;
     counter++;
   }
+  if(!counter){
+    return list;
+  }
   int r = rand() % counter;
   for(r; r > 0; r--)
     list = list->next;
