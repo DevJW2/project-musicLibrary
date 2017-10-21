@@ -128,11 +128,11 @@ int main() {
 
   printf("\n================================================================\n");
   printf("TESTING delete_all\n\n");
+  delete_all(table);
   print_out_artist_songs(table, "applecider");
+  printf("printing out table...\n");
+  print_library(table);
   printf("================================================================\n");
   
-  print_library(table);
-
-  //printf("%d\n",find_index('g'));
   return 0;
 }

@@ -75,15 +75,20 @@ void print_out_artist_songs(song_node *table[], char *artist) {
 // Print Music Library
 void print_library(song_node *table[]) {
   int i = 0;
+  int empty = 1; 
   char letter = 97; // ASCII
   for (; i < 26; i++) {
     if (table[i] != 0){
       if(table[i]->next != 0){
-	 printf("%c\n", letter);
-	print_list(table[i]);
+	     printf("%c\n", letter);
+	     print_list(table[i]);
+       empty = 0; 
       }
     }
     letter++;
+  }
+  if(empty == 1){
+    printf("Library is Empty\n");
   }
 }
 
@@ -108,11 +113,10 @@ song_node * remove_one_song(song_node *table[], song_node * node) {
 // Delete songs
 song_node * delete_all(song_node *table[]) {
   int i = 0;
-  song_node *node;
   for (; i < 26; i++) {
-    node = free_list(table[i]);
+    table[i] = free_list(table[i]);
   }
-  return node;
+  return table[0]; 
 }
 
 
