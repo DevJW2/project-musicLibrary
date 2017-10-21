@@ -9,7 +9,8 @@ void print_list(song_node *node) {
     printf("%s -- %s | ", node->artist, node->name);
     node = node->next; // Set node equal to next node
   }
-  printf("NULL\n");
+  printf("\n");
+  //printf("NULL\n");
 }
 
 song_node * insert_front(  song_node * list, char *song_name, char *artist){
