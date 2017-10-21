@@ -1,224 +1,134 @@
-//#include "linkedl.h"
 #include "music_lib.h"
 
+int main() {
 
-int main(){
-  song_node *list = NULL;
-  print_list(list);
-	
-  //printf("%d\n", list_len(list));
-	
-  printf("~~~~~~~~~~~~~~~~TESTING INSERT_FRONT~~~~~~~~~~~~~~~~~~~~~~~~~\n");
-  list = insert_front(list, "best", "song");
-  //printf("list len: %d\n", list_len(list));
-	
-  list = insert_front(list, "hey", "there");
-  //printf("list len: %d\n", list_len(list));
-	
-  list = insert_front(list, "bro", "omg");
-  //printf("list len: %d\n", list_len(list));
-	
-  print_list(list);
-	
-  list = free_list(list);
-  //printf("list len: %d\n", list_len(list));
-  print_list(list);
-	
-	
-  printf("~~~~~~~~~~~~~~~~TESTING INSERT_ORDER~~~~~~~~~~~~~~~~~~~~~~~~~\n");
-  list = add_song_node(list, 0, "First", "One");
-  printf("%lu\n", list_len(list));
-  print_list(list);
-	
-  list = insert_at(list, 1, "Second", "Two");
-  printf("%lu\n", list_len(list));
-  print_list(list);
-	
-  list = insert_at(list, 0, "Zeroth", "Zero");
-  printf("%lu\n", list_len(list));
-  print_list(list);
-	
-  list = insert_at(list, 2, "1.5th", "1.5");
-  printf("%lu\n", list_len(list));
-  print_list(list);
-	
-  list = insert_at(list, 1, "0.5th", "0.5");
-  printf("%lu\n", list_len(list));
-  print_list(list);
-	
-  list = insert_at(list, 0, "Zeroth", "Anotha Zero");
-  printf("%lu\n", list_len(list));
-  print_list(list);
-	
-	
-  printf("~~~~~~~~~~~~~~~~TESTING INSERT_ORDER~~~~~~~~~~~~~~~~~~~~~~~~~\n");
-  list = insert_order(list, "First", "One");
-  printf("list len: %lu\n", list_len(list));
-  print_list(list);
-	
-  list = insert_order(list, "Second", "Two");
-  printf("list len: %lu\n", list_len(list));
-  print_list(list);
-	
-  list = insert_order(list, "Zeroth", "Zero");
-  printf("list len: %lu\n", list_len(list));
-  print_list(list);
-	
-  list = insert_order(list, "1.5th", "1.5");
-  printf("list len: %lu\n", list_len(list));
-  print_list(list);
-	
-  list = insert_order(list, "secoNd", "A Two");
-  printf("list len: %lu\n", list_len(list));
-  print_list(list);
-	
-  list = insert_order(list, "secoNd", "ZTwo");
-  printf("list len: %lu\n", list_len(list));
-  print_list(list);
-	
-  list = insert_order(list, "Zeroth", "ZZZero");
-  printf("list len: %lu\n", list_len(list));
-  print_list(list);
-	
-	
-	
-  printf("~~~~~~~~~~~~~~~~TESTING FIND FUNCTIONS~~~~~~~~~~~~~~~~~~~~~~~~~\n");
-  song_node *temp;
-	
-  temp = find_song_by_artist_song(list, "1.5", "bro");
-  printf("artist: %s\t\tsong: %s\n", temp->artist, temp->name);
-	
-  temp = find_song_by_artist_song(list, "Zero", "wa");
-  printf("artist: %s\t\tsong: %s\n", temp->artist, temp->name);
-	
-  temp = find_firstsong_by_artist(list, "Zeroth");
-  printf("artist: %s\t\tsong: %s\n", temp->artist, temp->name);	
-	
-  temp = find_firstsong_by_artist(list, "Second");
-  printf("artist: %s\t\tsong: %s\n", temp->artist, temp->name);
-	
-  temp = find_firstsong_by_artist(list, "sEcOnd");
-  printf("artist: %s\t\tsong: %s\n", temp->artist, temp->name);
-	
-  printf("~~~~~~~~~~~~~~~~TESTING GET_RANDOM_SONG~~~~~~~~~~~~~~~~~~~~~~~~~\n");
-  int x;
-  for (x = 0; x < 10; x++) {
-    temp = rand_node(list);
-    printf("artist: %s\t\tsong: %s\n", temp->artist, temp->name);
+  srand(time(NULL));
+  
+  int i;
+  song_node *table[26];
+  for (i = 0; i < 26; i++) {
+    table[i] = calloc(26, sizeof(song_node *));
   }
-	
-  printf("~~~~~~~~~~~~~~~~TESTING REMOVE_NODE~~~~~~~~~~~~~~~~~~~~~~~~~\n");
-  printf("original list\n");
-  print_list(list);
-	
-  list = remove_node(list, 0);
-  print_list(list);
-	
-  list = remove_node(list, 4);
-  print_list(list);
-	
-  list = remove_node(list, 3);
-  print_list(list);
-	
-  list = remove_node(list, 1);
-  print_list(list);
-	
-  printf("~~~~~~~~~~~~~~~~TESTING FREE_LIST~~~~~~~~~~~~~~~~~~~~~~~~~\n");
-  list = free_list(list);
-  print_list(list);
-	
-	
-	
-  printf("~~~~~~~~~~~~~~~~LIBRARY FUNCTIONS~~~~~~~~~~~~~~~~~~~~~~~~~\n");
-  song_node *library[26];
-  for (x = 0; x < 26; x++) {
-    library[x] = NULL;
-  }
-	
-  printf("~~~~~~~~~~~~~~~~TESTING ADD_SONG~~~~~~~~~~~~~~~~~~~~~~~~~\n");
-  //library[0] = new_node("ahh", "song", library[0]);
-	
-  add_song_node("ahh", "oh no");
-  add_song_node("ahh", "song");
-  add_song_node("aah", "pizza");
-  add_song_node("billy", "bob");
-  add_song_node("babby", "waaa");
-  add_song_node("billy", "hello");
-	
-	
-  printf("~~~~~~~~~~~~~~~~TESTING PRINT_LIBRARY~~~~~~~~~~~~~~~~~~~~~~~~~\n");
-  //	print_library(library);
-	
-	
-  printf("~~~~~~~~~~~~~~~~TESTING FIND_BY_ARTIST~~~~~~~~~~~~~~~~~~~~~~~~~\n");
-  temp = search_artist("ahh");
-  print_list(temp);
-	
-  temp = search_artist("BabbY");
-  print_list(temp);
-	
-  temp = search_artist("chuck");
-  print_list(temp);
-	
-	
-  printf("~~~~~~~~~~~~~~~~TESTING FIND_BY_SONG_NAME_ARTIST~~~~~~~~~~~~~~~~~~~~~~~~~\n");
-  temp = search_song("ahh", "oh no");
-  print_list(temp);
-	
-  temp = search_song("billy", "bob");
-  print_list(temp);
-	
-  temp = search_song("chuck", "fun");
-  print_list(temp);
-	
-  temp = search_song("billy", "fun");
-  print_list(temp);
-	
-	
-  printf("~~~~~~~~~~~~~~~~TESTING PRINT_ALL_BY_LETTER~~~~~~~~~~~~~~~~~~~~~~~~~\n");
-  print_all_by_letter(library, 'a');
-  print_all_by_letter(library, 'B');
-  print_all_by_letter(library, 'x');
-	
-	
-  printf("~~~~~~~~~~~~~~~~TESTING PRINT_ALL_BY_ARTIST~~~~~~~~~~~~~~~~~~~~~~~~~\n");
-  print_all_by_artist(library, "billy");
-  print_all_by_artist(library, "babby");
-  print_all_by_artist(library, "DNE");
-	
-	
-  printf("~~~~~~~~~~~~~~~~TESTING SHUFFLE~~~~~~~~~~~~~~~~~~~~~~~~~\n");
-  //adding songs for the shuffle function
-  add_song(library, "dad", "jokes");
-  add_song(library, "efreet", "it's lit");
-  add_song(library, "freon", "holes");
-  add_song(library, "joker", "funny boi");
-	
-	
-  shuffle(library);
-  shuffle(library);
-  shuffle(library);
-	
-	
-  printf("~~~~~~~~~~~~~~~~TESTING DELETE_SONG~~~~~~~~~~~~~~~~~~~~~~~~~\n");
-  print_all_by_letter(library, 'b');
-  delete_song(library, "billy", "hello");
-  print_all_by_letter(library, 'b');
-	
-  delete_song(library, "babby", "hello");
-  print_all_by_letter(library, 'b');
-	
-  delete_song(library, "babby", "waaa");
-  print_all_by_letter(library, 'b');
-	
-  delete_song(library, "billy", "bob");
-  print_all_by_letter(library, 'b');
-	
-	
-  printf("~~~~~~~~~~~~~~~~TESTING DELETE_ALL_SONG~~~~~~~~~~~~~~~~~~~~~~~~~\n");
-  //print_library(library);
-  //delete_all(library);
-  //print_library(library);
-	
+
+  char *songname = "bro!";
+  char *artist = "applecider";
+
+  char *songname1 = "rem";
+  char *artist1 = "ape";
+
+  char *songname2 = "astral";
+  char *artist2 = "apple";
+
+  char *songname3 = "bird";
+  char *artist3 = "band";
+
+  printf("LINKED LIST TESTS\n");
+  printf("================================================================\n");
+
+  printf("TESTING insert_front\n\n");
+  table[0] = insert_front(table[0], songname, artist);
+  table[0] = insert_front(table[0], songname1, artist1);
+  print_list(table[0]);
+  table[1] = insert_front(table[1], songname3, artist3);
+  printf("================================================================\n");
+
+  printf("TESTING insert_order\n\n");
+  printf("adding ARTIST: apple, SONG: astral\n");
+  table[0] = insert_order(table[0], songname2, artist2); 
+  print_list(table[0]);
+  printf("================================================================\n");
+  
+
+  printf("\n================================================================\n");
+  printf("TESTING find_song_by_artist_song\n\n");
+  song_node *testsong = find_song_by_artist_song(table[0], songname, artist); // Node found
+  print_list(testsong);
+  printf("\n");
+  testsong = find_song_by_artist_song(table[0], songname3, artist); // Node not found
+  print_list(testsong);
+  
+  printf("\n================================================================\n");
+  printf("TESTING find_firstsong_by_artist\n\n");
+  printf("Looking for applecider...");
+  song_node *testsong1 = find_firstsong_by_artist(table[0], artist); // Node found
+  print_list(testsong1);
+  printf("\n");
+  printf("Looking for ban...");
+  testsong1 = find_firstsong_by_artist(table[0], artist3); // Node not found
+  print_list(testsong1);
+  printf("================================================================\n");
+
+  printf("\n================================================================\n");
+  printf("TESTING rand_node\n\n");
+  print_song_node(rand_node(table[0]));
+  printf("================================================================\n");
+
+  //FREE
+  //table[0] = free_list(table[0]);
+  //printf("list after freeing: %p\n", table[0]);
+
+  //ADD SONG
+  //add_song_node(table,songname3,artist3);
+
+  //REMOVE SONG
+  
+  //REMOVE ALL
+  
+  printf("\n\n================================================================\n");
+  printf("MUSIC LIBRARY TESTS\n");
+  printf("================================================================\n\n");
+
+  
+  printf("\n================================================================\n");
+  printf("TESTING search_song\n\n");
+  printf("Looking for applecider...bro...\n");
+  song_node *song3 = search_song(table, songname, artist); // Song found
+  print_list(song3);
+  printf("\n");
+  printf("Looking for (not found)...");
+  song3 = search_song(table, "not found", "not found"); // Song not found
+  print_list(song3);
+  printf("================================================================\n");
+
+  printf("\n================================================================\n");
+  printf("TESTING search_artist\n\n");
+  song_node *song4 = search_artist(table, artist1); // Artist found
+  print_list(song4);
+  printf("\n");
+  song4 = search_artist(table, "not found"); // Artist not found
+  print_list(song4);
+  printf("================================================================\n");
+
+  printf("\n================================================================\n");
+  printf("TESTING print_out_letter\n\n");
+  printf("printing out all 'a'\n");
+  print_out_letter(table, 'a');
+  printf("================================================================\n");
+
+  printf("\n================================================================\n");
+  printf("TESTING print_out_artist_songs\n\n");
+  printf("printing out all songs from applecider\n");
+  print_out_artist_songs(table, "applecider");
+  printf("================================================================\n");
+
+  printf("\n================================================================\n");
+  printf("TESTING print_library\n\n");
+  print_library(table);
+  printf("================================================================\n");
+
+  printf("\n================================================================\n");
+  printf("TESTING shuffle\n\n");
+  shuffle(table);
+  printf("================================================================\n");
+
+
+  printf("\n================================================================\n");
+  printf("TESTING delete_all\n\n");
+  print_out_artist_songs(table, "applecider");
+  printf("================================================================\n");
+  
+  print_library(table);
+
+  printf("%d\n",find_index('g'));
   return 0;
 }

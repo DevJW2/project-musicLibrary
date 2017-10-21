@@ -1,117 +1,144 @@
 #include "music_lib.h"
 
-int table_len(){
+
+song_node * add_song_node(song_node *table[], char *name, char *artist) {
+  int i = find_index(artist[0]);
+  song_node *tmp;
+  if (!(strncmp(artist, table[i]->artist, 1))) {
+    tmp = table[i];
+    tmp = insert_order(tmp, name, artist);
+    table[i] = tmp;
+    return table[i];
+  }
+  return tmp;
+}
+
+// Search song
+song_node * search_song(song_node *table[], char *name, char *artist) {
+  int i = find_index(artist[0]);
+  song_node *tmp;
+  tmp = table[i];
+  while (tmp) {
+    // Check if correct node
+    if (!strcmp(name, tmp->name) && !strcmp(artist, tmp->artist)) {
+      printf("Song exists!\n");
+      return tmp;
+    }
+    tmp = tmp->next;
+  }
+  printf("Song doesn't exist!\n");
+  return tmp;
+}
+
+// Search artist
+song_node * search_artist(song_node *table[], char *artist) {
+  int i = find_index(artist[0]);
+  song_node *tmp;
+  tmp = table[i];
+  while (tmp) {
+    // Check if correct node
+    if (!strcmp(artist, tmp->artist)) {
+      printf("Artist exists!\n");
+      return tmp;
+    }
+    tmp = tmp->next;
+  }
+  printf("Artist doesn't exists\n");
+  return tmp;
+}
+
+// Print all songs under letter
+void print_out_letter(song_node *table[], char *letter) {
+   int i = find_index(letter);
+   print_list(table[i]);
+}
+
+// Print all songs by artist
+void print_out_artist_songs(song_node *table[], char *artist) {
+  int i = find_index(artist[0]);
+  song_node *tmp;
+  tmp = table[i];
+  while (tmp) {
+    // Check if correct node
+    if (!strcmp(artist, tmp->artist)) {
+      printf("Artist: %s -- Name: %s\n", tmp->artist, tmp->name);
+      // If the the next node's artist is not equal to the current artist, then return
+	if (strcmp(artist, tmp->next->artist)) {
+	  return;
+	}
+    }
+    tmp = tmp->next;
+  }
+  printf("Artist not found!\n");
+}
+
+// Print Music Library
+void print_library(song_node *table[]) {
   int i = 0;
-  while (table[i++]){}
+  char letter = 97; // ASCII
+  for (; i < 26; i++) {
+    if (table[i] != 0){
+      printf("%c\n", letter);
+      print_list(table[i]);
+    }
+    letter++;
+  }
+}
+
+// Print out random songs
+void shuffle(song_node *table[]) {
+  int playlist_len = 3;
+  int i = 0;
+  song_node *tmp;
+  int random;
+  for (; i < playlist_len; i++) {
+    random = rand();
+    tmp = rand_node(table[random % 26]);
+    print_song_node(tmp);
+  }
+}
+
+// Remove songs
+song_node * remove_one_song(song_node *table[], song_node * node) {
+  return node;
+}
+
+// Delete songs
+song_node * delete_all(song_node *table[]) {
+  int i = 0;
+  song_node *node;
+  for (; i < 26; i++) {
+    node = free_list(table[i]);
+  }
+  return node;
+}
+
+
+
+// List length
+int list_len(song_node *list) {
+  int ret = 0;
+  while (list) {
+    list = list->next;
+    ret++;
+  }
+  return ret;
+}
+
+// Print single node
+void print_song_node(song_node *node) {
+  printf("Artist: %s -- Name: %s \n", node->artist, node->name);
+}
+
+// Find correct letter index
+int find_index(char *first_letter) {
+  int i = 0;
+  int first_letter_value = first_letter - 'a';
+  for (; i < 26; i++) {
+    if (first_letter_value > i) {
+    } else {
+      return i;
+    }
+  }
   return i;
-}
-
-
-
-song_node * table_insert(char *song_name, char *artist, int i){ //helper function to add_song_node
-  int len = table_len();
-  song_node * temp = (song_node *)malloc(sizeof(song_node));
-
-  strcpy(temp->name, song_name);
-  strcpy(temp->artist, artist);
-  
-  while(len-i > 0){
-    if(len-i == 1){
-      table[len] = table[i];
-      table[i] = temp;
-      break;
-    }
-    table[len+1] = table[len];
-    i++;
-  }
-  return NULL;
-}
-
-
-song_node * add_song_node(char *song_name, char *artist){
-  int i = 0;
-  int len = table_len();
-  int cmp = strncmp(table[0]->artist, artist,1);
-  song_node * temp = (song_node *)malloc(sizeof(song_node));
-  while (table[i] && !(cmp<0)){
-    i++;
-    cmp = strncmp(table[i]->artist, artist,1);
-  }
-  if(cmp == 0){
-    return insert_order( table[i], song_name, artist );
-  }
-  else
-    return table_insert(song_name, artist,i);
-}
-
-
-
-song_node * search_song(char *song_name, char *artist){
-  int i = 0;
-  while (table[i]){
-    if( !strncmp(table[0]->artist, artist,1) )
-      return find_song_by_artist_song(table[i],song_name,artist);
-    i++;
-  }
-  return NULL;
-}
-
-song_node * search_artist(char *artist){
-  int i = 0;
-  while (table[i]){
-    if( !strncmp(table[0]->artist, artist,1) )
-      return find_firstsong_by_artist(table[i],artist);
-    i++;
-  }
-  return NULL;
-}
-
-song_node * delete_all(song_node * list){
-  int x = 0;
-  for(x = 0; x < 26; x++){
-    table[x] = free_list(table[x]);
-  }
-}
-
-/*
-  Print out all the entries under a certain letter.
-  Print out all the songs of a certain artist
-  Print out the entire library.
-*/
-
-void print_out_letter(char c){
-  song_node * temp = (song_node *)malloc(sizeof(song_node));
-  int len = table_len();
-  while(len--){
-    if (strncmp(table[len]->artist, c) > 0)
-      break;
-    if (!strncmp(table[len]->artist, c)){
-      temp = table[len];
-      break;
-    }
-  }
-  printf("All %c artists and songs\n", c);
-  if(!temp) 
-    printf("There are no artists or songs in this list");
-  while (temp = temp->next)
-    printf("%s: %s |", temp->artist, temp->name);
-  printf("\n");
-}
-
-void print_out_artist_songs(song_node * list, char * artist){
-  while (list = list->next){
-    if (strcmp(list->artist, artist) > 0)
-      break;
-    if (strcmp(list->artist, artist) == 0)
-      printf(" %s: %s |", temp->artist, temp->name);
-  }
-}
-
-void print_library(){
-  int len = table_len();
-  hchar * temp = '';
-  for(len; len > 0; len--){
-    strncpy(temp, table[len]->artist, 1);
-    print_out_letter(temp);
-  }
 }

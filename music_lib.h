@@ -1,22 +1,26 @@
 #include "linkedl.h"
 
-song_node * add_song_node(char *, char *);
+song_node * add_song_node(song_node *table[], char *name, char *artist);
 
-int table_len();
+song_node * search_song(song_node *table[], char *name, char *artist);
 
-song_node * table_insert(char *, char *, int i);
+song_node * search_artist(song_node *table[], char *artist);
 
-song_node * checklist(song_node *, song_node *);
+void print_out_letter(song_node *table[], char *letter);
 
-void print_out_letter(char);
+void print_out_artist_songs(song_node *table[], char *artist);
 
-void print_out_artist_songs(song_node *, char *);
+void print_library(song_node *table[]);
 
-void print_library();
+void shuffle(song_node *table[]);
 
-song_node * search_song(char *, char *);
+song_node * remove_one_song(song_node *table[], song_node * node);
 
-song_node * search_artist(char *);
+song_node * delete_all(song_node *table[]);
 
-song_node * delete_all(song_node *);
+int list_len(song_node *list);
+
+void print_song_node(song_node *node);
+
+int find_index(char *first_letter);
 

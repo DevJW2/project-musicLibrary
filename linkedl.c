@@ -1,18 +1,15 @@
 //Jeffrey Weng, Jensen Li
-//Project 0: my_tunez
 //Period 10
 
 
 #include "linkedl.h"
 
-void print_list( song_node * list){
-  printf("list content: ");
-  
-  while(list){
-    printf("%s - %s",(* list).name, (* list).name);
-    list = list->next;
+void print_list(song_node *node) {
+  while (node) {
+    printf("%s -- %s | ", node->artist, node->name);
+    node = node->next; // Set node equal to next node
   }
-  printf("\n");
+  printf("NULL\n");
 }
 
 song_node * insert_front(  song_node * list, char *song_name, char *artist){
@@ -43,28 +40,31 @@ song_node * insert_order(  song_node * list, char *song_name, char *artist){
     }
     return insert_front(list,song_name,artist);
   }
-}
-    
+  }
 
 song_node * find_song_by_artist_song(song_node * list, char *song_name, char *artist){
-  while(list){
-    if(!(strcmp(song_name, list->name) && strcmp(artist, list->artist))){
-      return list; 
+  while (list->next) {
+    if (!strcmp(song_name, list->name) && !strcmp(artist, list->artist)) {
+      printf("Found Song\n");
+      return list;
     }
     list = list->next;
   }
-  
-  return NULL; 
+  printf("Song not found\n");
+  return list;
 }
 
+
 song_node * find_firstsong_by_artist(song_node * list, char *artist){
-  while(list){
-    if(strcmp(artist, list->artist) == 0){
-      return list; 
+ while (list->next) {
+    if (!strcmp(artist, list->artist)) {
+      printf("First artist's song found!\n");
+      return list;
     }
-    
+    list = list->next;
   }
-  return NULL; 
+  printf("Artist not found\n");
+  return list;
 }
 
 song_node * rand_node(song_node * list){
@@ -78,7 +78,8 @@ song_node * rand_node(song_node * list){
   for(r; r > 0; r--)
     list = list->next;
   return list;
-}
+  }
+
 
 song_node * remove_node(song_node * list, char *song_name, char *artist){
   song_node * temp = list->next;
@@ -90,7 +91,6 @@ song_node * remove_node(song_node * list, char *song_name, char *artist){
   }
   return list->next = temp->next;
   }
-
 
 song_node* free_list(  song_node * list){
   song_node * tmp; 
