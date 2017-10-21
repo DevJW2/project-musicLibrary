@@ -1,7 +1,7 @@
 #include "music_lib.h"
 
 
-song_node * add_song_node(song_node *table[], char *name, char *artist) {
+song_node * add_song_node(song_node *table[], char *name, char artist[]) {
   int i = find_index(artist[0]);
   song_node *tmp;
   if (!(strncmp(artist, table[i]->artist, 1))) {
@@ -48,7 +48,7 @@ song_node * search_artist(song_node *table[], char *artist) {
 }
 
 // Print all songs under letter
-void print_out_letter(song_node *table[], char *letter) {
+void print_out_letter(song_node *table[], char letter) {
    int i = find_index(letter);
    print_list(table[i]);
 }
@@ -131,7 +131,7 @@ void print_song_node(song_node *node) {
 }
 
 // Find correct letter index
-int find_index(char *first_letter) {
+int find_index(char first_letter) {
   int i = 0;
   int first_letter_value = first_letter - 'a';
   for (; i < 26; i++) {

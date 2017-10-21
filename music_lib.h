@@ -1,12 +1,12 @@
 #include "linkedl.h"
 
-song_node * add_song_node(song_node *table[], char *name, char *artist);
+song_node * add_song_node(song_node *table[], char *name, char artist[]);
 
 song_node * search_song(song_node *table[], char *name, char *artist);
 
 song_node * search_artist(song_node *table[], char *artist);
 
-void print_out_letter(song_node *table[], char *letter);
+void print_out_letter(song_node *table[], char letter);
 
 void print_out_artist_songs(song_node *table[], char *artist);
 
@@ -22,5 +22,5 @@ int list_len(song_node *list);
 
 void print_song_node(song_node *node);
 
-int find_index(char *first_letter);
+int find_index(char first_letter);
 
