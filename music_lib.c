@@ -97,18 +97,19 @@ void shuffle(song_node *table[]) {
   int playlist_len = 3;
   int i = 0;
   song_node *tmp;
-  int random;
   for (; i < playlist_len; i++) {
-    random = rand();
-    tmp = rand_node(table[random % 26]);
+    while(!tmp)
+      tmp = rand_node(table[rand() % 26]);
+    printf("%d\n", random);
     print_song_node(tmp);
   }
 }
 
-// Remove songs
-song_node * remove_one_song(song_node *table[], song_node * node) {
-  return node;
+// Remove a song
+/*
+song_node * remove_one_song(song_node *table[], char * artist, char * song) {
 }
+*/
 
 // Delete songs
 song_node * delete_all(song_node *table[]) {
