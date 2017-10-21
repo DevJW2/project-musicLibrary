@@ -66,8 +66,6 @@ int main() {
   print_song_node(rand_node(table[0]));
   printf("================================================================\n");
 
-  //ADD SONG
-  //add_song_node(table,songname3,artist3);
 
   //REMOVE SONG
   
@@ -77,6 +75,10 @@ int main() {
   printf("MUSIC LIBRARY TESTS\n");
   printf("================================================================\n\n");
 
+  printf("\n================================================================\n");
+  printf("TESTING add_song_node\n");
+  printf("adding Artist: boy, Song: sys...\n");
+  add_song_node(table,songname4,artist4);
   
   printf("\n================================================================\n");
   printf("TESTING search_song\n\n");
