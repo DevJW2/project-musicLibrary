@@ -41,7 +41,7 @@ song_node * insert_order(  song_node * list, char *song_name, char *artist){
     }
     return insert_front(list,song_name,artist);
   }
-  }
+}
 
 song_node * find_song_by_artist_song(song_node * list, char *song_name, char *artist){
   while (list->next) {
@@ -57,7 +57,7 @@ song_node * find_song_by_artist_song(song_node * list, char *song_name, char *ar
 
 
 song_node * find_firstsong_by_artist(song_node * list, char *artist){
- while (list->next) {
+  while (list->next) {
     if (!strcmp(artist, list->artist)) {
       printf("First artist's song found!\n");
       return list;
@@ -82,19 +82,18 @@ song_node * rand_node(song_node * list){
   for(r; r > 0; r--)
     list = list->next;
   return list;
-  }
+}
 
 
 song_node * remove_node(song_node * list, char *song_name, char *artist){
-  song_node * temp = list->next;
-  if(strcmp(list->name, song_name) && strcmp(list->artist, artist))
-    return list->next = temp->next;
-  while (!(strcmp(temp->name, song_name) && strcmp(temp->artist, artist)) && temp->next){
-    list = list->next;
-    temp = temp->next;
+  song_node * tmp;
+  if(list){
+    tmp = list->next;
+    free(list);
+    list = tmp; 
   }
-  return list->next = temp->next;
-  }
+  return list; 
+}
 
 song_node* free_list(  song_node * list){
   song_node * tmp; 

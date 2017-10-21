@@ -10,6 +10,8 @@ song_node * add_song_node(song_node *table[], char *name, char artist[]) {
     table[i] = tmp;
     return table[i];
   }
+  else
+    return table[i] = insert_front( table[i], name, artist);
   return tmp;
 }
 
@@ -106,10 +108,14 @@ void shuffle(song_node *table[]) {
 }
 
 // Remove a song
-/*
+
 song_node * remove_one_song(song_node *table[], char * artist, char * song) {
+  int i = find_index(artist[0]);
+  song_node * temp = find_song_by_artist_song(table[i], song, artist);
+
+  return table[i]->next = remove_node(temp, song, artist);
 }
-*/
+
 
 // Delete songs
 song_node * delete_all(song_node *table[]) {
@@ -142,10 +148,8 @@ int find_index(char first_letter) {
   int i = 0;
   int first_letter_value = first_letter - 'a';
   for (; i < 26; i++) {
-    if (first_letter_value > i) {
-    } else {
+    if (first_letter_value <= i) 
       return i;
-    }
   }
   return i;
 }
