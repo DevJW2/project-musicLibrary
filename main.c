@@ -22,6 +22,9 @@ int main() {
   char *songname3 = "bird";
   char *artist3 = "band";
 
+  char *songname4 = "sys";
+  char *artist4 = "boy";
+
   printf("LINKED LIST TESTS\n");
   printf("================================================================\n");
 
@@ -41,20 +44,20 @@ int main() {
 
   printf("\n================================================================\n");
   printf("TESTING find_song_by_artist_song\n\n");
-  song_node *testsong = find_song_by_artist_song(table[0], songname, artist); // Node found
+  song_node *testsong = find_song_by_artist_song(table[0], songname, artist);
   print_list(testsong);
   printf("\n");
-  testsong = find_song_by_artist_song(table[0], songname3, artist); // Node not found
+  testsong = find_song_by_artist_song(table[0], songname3, artist);
   print_list(testsong);
   
   printf("\n================================================================\n");
   printf("TESTING find_firstsong_by_artist\n\n");
   printf("Looking for applecider...");
-  song_node *testsong1 = find_firstsong_by_artist(table[0], artist); // Node found
+  song_node *testsong1 = find_firstsong_by_artist(table[0], artist); 
   print_list(testsong1);
   printf("\n");
   printf("Looking for ban...");
-  testsong1 = find_firstsong_by_artist(table[0], artist3); // Node not found
+  testsong1 = find_firstsong_by_artist(table[0], artist3); 
   print_list(testsong1);
   printf("================================================================\n");
 
@@ -62,10 +65,6 @@ int main() {
   printf("TESTING rand_node\n\n");
   print_song_node(rand_node(table[0]));
   printf("================================================================\n");
-
-  //FREE
-  //table[0] = free_list(table[0]);
-  //printf("list after freeing: %p\n", table[0]);
 
   //ADD SONG
   //add_song_node(table,songname3,artist3);
@@ -82,20 +81,20 @@ int main() {
   printf("\n================================================================\n");
   printf("TESTING search_song\n\n");
   printf("Looking for applecider...bro...\n");
-  song_node *song3 = search_song(table, songname, artist); // Song found
+  song_node *song3 = search_song(table, songname, artist);
   print_list(song3);
   printf("\n");
   printf("Looking for (not found)...");
-  song3 = search_song(table, "not found", "not found"); // Song not found
+  song3 = search_song(table, "not found", "not found"); 
   print_list(song3);
   printf("================================================================\n");
 
   printf("\n================================================================\n");
   printf("TESTING search_artist\n\n");
-  song_node *song4 = search_artist(table, artist1); // Artist found
+  song_node *song4 = search_artist(table, artist1); 
   print_list(song4);
   printf("\n");
-  song4 = search_artist(table, "not found"); // Artist not found
+  song4 = search_artist(table, "not found"); 
   print_list(song4);
   printf("================================================================\n");
 
